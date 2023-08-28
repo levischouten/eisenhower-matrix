@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -61,6 +61,7 @@ export const schema = z
 
 export default function CreateTask() {
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const { user } = useUser();
 
@@ -81,10 +82,14 @@ export default function CreateTask() {
       throw new Error("User not defined");
     }
 
+    setLoading(true);
+
     await createTask({ ...values, userId: user.id });
 
     router.refresh();
     setOpen(false);
+    setLoading(false);
+    form.reset();
   }
 
   return (
@@ -217,7 +222,8 @@ export default function CreateTask() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="self-end">
+            <Button type="submit" disabled={loading} className="self-end">
+              {loading && <Loader2Icon className="h4 w-4 mr-2 animate-spin" />}
               Submit
             </Button>
           </form>
