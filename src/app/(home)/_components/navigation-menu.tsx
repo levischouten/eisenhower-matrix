@@ -59,8 +59,10 @@ const CATEGORY_LINKS = [
 ];
 
 export default function Navigation() {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button size="icon" variant="ghost">
           <MenuIcon className="h-4 w-4" />
@@ -73,8 +75,9 @@ export default function Navigation() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 {GENERAL_LINKS.map(({ href, icon, title }) => (
-                  <Link key={href} href={href}>
+                  <Link key={href} href={href} legacyBehavior>
                     <NavigationMenuLink
+                      onClick={() => setOpen(false)}
                       className={cn(
                         navigationMenuTriggerStyle(),
                         "flex gap-2 items-center justify-start w-full"
@@ -93,8 +96,9 @@ export default function Navigation() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 {CATEGORY_LINKS.map(({ href, icon, title }) => (
-                  <Link key={href} href={href}>
+                  <Link key={href} href={href} legacyBehavior>
                     <NavigationMenuLink
+                      onClick={() => setOpen(false)}
                       className={cn(
                         navigationMenuTriggerStyle(),
                         "flex gap-2 items-center justify-start w-full"
