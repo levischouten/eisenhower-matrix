@@ -32,3 +32,7 @@ Open [http://localhost:4000](http://localhost:4000) with your browser to see the
 ### Tasks
 
 - [x] implement planetscale mysql database with prisma
+
+### Bugs
+
+- [ ] date-picker not working in dialog on safari

@@ -139,7 +139,7 @@ export default function CreateTask() {
                   name="isImportant"
                   render={({ field }) => (
                     <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                      <div className="space-y-0.5">
+                      <div className="space-y-0.5 space-x-1">
                         <FormLabel>Mark as Important</FormLabel>
                         <FormDescription>
                           Consider by when this task needs to be done.
@@ -207,7 +207,6 @@ export default function CreateTask() {
                         selected={field.value}
                         onSelect={field.onChange}
                         disabled={(date) => date < new Date("1900-01-01")}
-                        initialFocus
                       />
                     </PopoverContent>
                   </Popover>
