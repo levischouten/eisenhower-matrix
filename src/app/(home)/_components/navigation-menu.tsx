@@ -35,30 +35,30 @@ const GENERAL_LINKS = [
   },
 ];
 
-const FILTER_LINKS = [
+const CATEGORY_LINKS = [
   {
-    href: "/filters/do",
+    href: "/categories/do",
     title: "Do",
     icon: BellDotIcon,
   },
   {
-    href: "/filters/schedule",
+    href: "/categories/schedule",
     title: "Schedule",
     icon: CalendarCheckIcon,
   },
   {
-    href: "/filters/delegate",
+    href: "/categories/delegate",
     title: "Delegate",
     icon: ContactIcon,
   },
   {
-    href: "/filters/delete",
+    href: "/categories/delete",
     title: "Delete",
     icon: Trash2Icon,
   },
 ];
 
-export default function Menu() {
+export default function Navigation() {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -73,7 +73,7 @@ export default function Menu() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 {GENERAL_LINKS.map(({ href, icon, title }) => (
-                  <Link key={href} href={href} legacyBehavior passHref>
+                  <Link key={href} href={href}>
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
@@ -89,11 +89,11 @@ export default function Menu() {
             </NavigationMenuList>
           </div>
           <div className="flex flex-col">
-            <p className="font-semibold text-md">Filters</p>
+            <p className="font-semibold text-md">Categories</p>
             <NavigationMenuList>
               <NavigationMenuItem>
-                {FILTER_LINKS.map(({ href, icon, title }) => (
-                  <Link key={href} href={href} legacyBehavior passHref>
+                {CATEGORY_LINKS.map(({ href, icon, title }) => (
+                  <Link key={href} href={href}>
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),

@@ -1,4 +1,4 @@
-import TaskList from "@/app/_components/task-list";
+import TaskList from "@/app/(home)/_components/task-list";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -30,10 +30,10 @@ const WHERE = {
   },
 };
 
-export default async function Filter({
+export default async function Category({
   params,
 }: {
-  params: { filter: string };
+  params: { category: string };
 }) {
   const { userId } = auth();
 
@@ -41,15 +41,15 @@ export default async function Filter({
     throw new Error("User not defined");
   }
 
-  const filter = params.filter as keyof typeof DESCRIPTIONS;
+  const category = params.category as keyof typeof DESCRIPTIONS;
 
-  if (!(filter in DESCRIPTIONS)) {
-    redirect("/filters/do");
+  if (!(category in DESCRIPTIONS)) {
+    redirect("/categories/do");
   }
 
   const tasks = await prisma.task.findMany({
     where: {
-      ...WHERE[filter],
+      ...WHERE[category],
       isResolved: false,
       userId,
     },
@@ -57,8 +57,8 @@ export default async function Filter({
 
   return (
     <div>
-      <p className="capitalize font-semibold">{filter}</p>
-      <p className="text-sm">{DESCRIPTIONS[filter]}</p>
+      <p className="capitalize font-semibold">{category}</p>
+      <p className="text-sm mb-4">{DESCRIPTIONS[category]}</p>
       <TaskList tasks={tasks} />
     </div>
   );

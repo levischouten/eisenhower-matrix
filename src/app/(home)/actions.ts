@@ -19,3 +19,11 @@ export async function updateTask(data: Task) {
     data,
   });
 }
+
+export async function deleteTask(taskId: number) {
+  return await prisma.task.delete({
+    where: {
+      id: taskId,
+    },
+  });
+}
