@@ -23,5 +23,6 @@ model Task {
   isUrgent    Boolean   @default(false)
   dueDate     DateTime?
 
-  isResolved Boolean @default(false)
+  isResolved Boolean  @default(false)
+  resolvedAt DateTime @default(now())
 }

@@ -1,12 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
 import CreateTask from "./_components/create-task";
 import TaskList from "./_components/task-list";
+import { prisma } from "@/lib/prisma";
+
+const EXPIRATION_TIME = new Date();
+EXPIRATION_TIME.setHours(EXPIRATION_TIME.getHours() - 12);
 
 export default async function Home() {
   const { userId } = auth();
-
-  const prisma = new PrismaClient();
 
   if (!userId) {
     throw new Error("User not defined");
@@ -14,7 +15,19 @@ export default async function Home() {
 
   const tasks = await prisma.task.findMany({
     where: {
-      userId,
+      OR: [
+        {
+          userId,
+          isResolved: true,
+          resolvedAt: {
+            gt: EXPIRATION_TIME,
+          },
+        },
+        {
+          userId,
+          isResolved: false,
+        },
+      ],
     },
     orderBy: [
       {
@@ -27,7 +40,7 @@ export default async function Home() {
   });
 
   return (
-    <main className="flex flex-col gap-2 p-4">
+    <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold">Inbox</h1>
         <CreateTask />
@@ -35,6 +48,6 @@ export default async function Home() {
       <div>
         <TaskList tasks={tasks} />
       </div>
-    </main>
+    </div>
   );
 }

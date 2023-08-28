@@ -22,11 +22,12 @@ Open [http://localhost:4000](http://localhost:4000) with your browser to see the
 - [x] user should be able to create tasks and mark them as important and/or urgent
 - [x] user should be able to view all tasks
 - [x] user should be able to mark task as done
-- [ ] user should be able to filter by: urgent & important, important & not urgent, urgent & unimportant, unimportant & not urgent
+- [x] user should be able to filter by: do, schedule, delegate, delete
 - [ ] user should be able to edit tasks
 - [ ] user should be able to delete tasks
 - [ ] user should be able to schedule task
 - [ ] user should be able to link calendar to show scheduled tasks
+- [ ] user should be able to manage account and logout
 
 ### Tasks
 
