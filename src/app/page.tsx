@@ -3,6 +3,7 @@ import CreateTask from "./_components/create-task";
 import TaskList from "./_components/task-list";
 import { prisma } from "@/lib/prisma";
 
+// used to hide outdated resolved tasks
 const EXPIRATION_TIME = new Date();
 EXPIRATION_TIME.setHours(EXPIRATION_TIME.getHours() - 12);
 

@@ -1,4 +1,4 @@
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -26,8 +26,11 @@ export default function RootLayout({
             "flex flex-col h-screen items-center bg-slate-50/50"
           )}
         >
-          <header className="p-4 w-full bg-white">
+          <header className="flex justify-between items-center p-4 w-full bg-white">
             <Menu />
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </header>
           <main className="flex-1 px-4 py-8 max-w-6xl w-full">{children}</main>
         </body>

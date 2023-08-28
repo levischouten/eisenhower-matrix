@@ -27,7 +27,7 @@ Open [http://localhost:4000](http://localhost:4000) with your browser to see the
 - [ ] user should be able to delete tasks
 - [ ] user should be able to schedule task
 - [ ] user should be able to link calendar to show scheduled tasks
-- [ ] user should be able to manage account and logout
+- [x] user should be able to manage account and logout
 
 ### Tasks
 
@@ -35,4 +35,5 @@ Open [http://localhost:4000](http://localhost:4000) with your browser to see the
 
 ### Bugs
 
-- [ ] date-picker not working in dialog on safari
+- [x] date-picker not working in dialog on safari
+- [ ] sign-up and sign-in page layout is incorrect
