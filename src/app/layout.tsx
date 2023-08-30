@@ -9,6 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Eisenhower Matrix",
   description: "Eisenhower matrix task manager",
+  viewport: {
+    viewportFit: "cover",
+    initialScale: 1.0,
+    width: "device-width",
+  },
 };
 
 export default function RootLayout({

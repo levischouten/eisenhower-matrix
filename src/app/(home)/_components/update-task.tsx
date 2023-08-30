@@ -14,13 +14,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { createTask } from "../actions";
+import { updateTask } from "../actions";
 
 import TaskForm, { schema } from "./task-form";
+import { Task } from "@prisma/client";
+import { PencilIcon } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
-export default function CreateTask() {
+type UpdateTaskProps = {
+  task: Task;
+};
+
+export default function UpdateTask(props: UpdateTaskProps) {
   const [open, setOpen] = React.useState(false);
 
+  const { toast } = useToast();
   const { user } = useUser();
 
   const router = useRouter();
@@ -30,7 +38,12 @@ export default function CreateTask() {
       throw new Error("User not defined");
     }
 
-    await createTask({ ...values, userId: user.id });
+    const task = await updateTask({ ...props.task, ...values });
+
+    toast({
+      title: "Update was successful",
+      description: `${task.title} has been updated`,
+    });
 
     router.refresh();
     setOpen(false);
@@ -39,15 +52,22 @@ export default function CreateTask() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add task</Button>
+        <Button size="sm" variant="ghost" className="hidden sm:flex">
+          <PencilIcon className="mr-2 h-4 w-4" /> Update
+        </Button>
+      </DialogTrigger>
+      <DialogTrigger asChild>
+        <Button size="icon" variant="ghost" className="flex sm:hidden">
+          <PencilIcon className="h-4 w-4" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create Task</DialogTitle>
+          <DialogTitle>Update Task</DialogTitle>
           <DialogDescription>Fill in the following fields</DialogDescription>
         </DialogHeader>
 
-        <TaskForm onSubmit={handleSubmit} />
+        <TaskForm onSubmit={handleSubmit} task={props.task} />
       </DialogContent>
     </Dialog>
   );
