@@ -9,12 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Task } from "@prisma/client";
 import { Trash2Icon } from "lucide-react";
 import { deleteTask } from "../actions";
 import { useRouter } from "next/navigation";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 type DeleteTaskProps = {
   task: Task;
@@ -40,14 +40,9 @@ export default function DeleteTask(props: DeleteTaskProps) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size="sm" variant="ghost" className="hidden sm:flex">
+        <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
           <Trash2Icon className="mr-2 h-4 w-4" /> Delete
-        </Button>
-      </AlertDialogTrigger>
-      <AlertDialogTrigger asChild>
-        <Button size="icon" variant="ghost" className="flex sm:hidden">
-          <Trash2Icon className="h-4 w-4" />
-        </Button>
+        </DropdownMenuItem>
       </AlertDialogTrigger>
 
       <AlertDialogContent>
