@@ -121,7 +121,7 @@ export default function TaskForm(props: TaskFormProps) {
                   <div className="space-y-0.5 space-x-1">
                     <FormLabel>Mark as Important</FormLabel>
                     <FormDescription>
-                      Consider by when this task needs to be done.
+                      Will doing this task significantly benefit me or others.
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -141,7 +141,7 @@ export default function TaskForm(props: TaskFormProps) {
                   <div className="space-y-0.5">
                     <FormLabel>Mark as Urgent</FormLabel>
                     <FormDescription>
-                      Consider if this task can be delegated or automated.
+                      Does this task need to be done right away or very soon.
                     </FormDescription>
                   </div>
                   <FormControl>

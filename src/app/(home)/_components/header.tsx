@@ -11,7 +11,7 @@ export default function Header() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <header className="flex justify-between items-center p-4 w-full bg-white sm:items-end md:justify-end">
+    <header className="flex justify-between items-center p-4 w-full  dark:bg-slate-950 sm:items-end md:justify-end">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button size="icon" variant="ghost" className="md:hidden">
