@@ -95,7 +95,12 @@ type TaskListProps = {
 
 export default function TaskList(props: TaskListProps) {
   if (props.tasks.length === 0) {
-    return <p className="text-sm p-2">No tasks found.</p>;
+    return (
+      <div className="mt-16 space-y-2 text-center">
+        <h2 className="font-semibold text-lg">Well done!</h2>
+        <p className="text-sm">You have finished up all your tasks.</p>
+      </div>
+    );
   }
 
   return (

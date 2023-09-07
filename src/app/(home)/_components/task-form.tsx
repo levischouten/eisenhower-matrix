@@ -197,7 +197,7 @@ export default function TaskForm(props: TaskFormProps) {
           )}
         />
         <Button type="submit" disabled={loading} className="self-end">
-          {loading && <Loader2Icon className="h4 w-4 mr-2 animate-spin" />}
+          {loading && <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />}
           Submit
         </Button>
       </form>

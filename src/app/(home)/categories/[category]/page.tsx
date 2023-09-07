@@ -4,11 +4,10 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const DESCRIPTIONS = {
-  do: "Tasks with deadlines or consequences",
-  schedule: "Tasks with unclear deadlines that contribute to long-term success",
-  delegate:
-    "Tasks that must get done but don't require your specific skill set",
-  delete: "Distractions and unnecessary tasks",
+  do: "Do tasks that are urgent and important immediately.",
+  schedule: "Plan a time to focus on important, but not urgent tasks.",
+  delegate: "Delegate urgent but not important tasks if possible.",
+  delete: "Eliminate or reduce tasks that are neither urgent nor important",
 };
 
 const WHERE = {
@@ -56,8 +55,10 @@ export default async function Category({
   });
 
   return (
-    <div>
-      <p className="capitalize font-semibold">{category}</p>
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl font-bold capitalize">{category}</h1>
+      </div>
       <p className="text-sm mb-4">{DESCRIPTIONS[category]}</p>
       <TaskList tasks={tasks} />
     </div>
