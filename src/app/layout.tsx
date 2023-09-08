@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     initialScale: 1.0,
     width: "device-width",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
